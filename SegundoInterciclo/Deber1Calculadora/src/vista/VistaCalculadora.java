@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -26,12 +27,14 @@ import javax.swing.JTextField;
  */
 public class VistaCalculadora extends JFrame
 {
-
+    ArrayList lista=new ArrayList();
     JPanel panelPrincipal;
     JPanel panel;
     JButton boton;
     JTextField cuadroTexto=new JTextField("");
-    String azar;
+    int a,b;
+    String op;
+    int operacion;
     public VistaCalculadora()
     {
         super();
@@ -45,7 +48,7 @@ public class VistaCalculadora extends JFrame
     }
     public JPanel initCalculadora()
     {
-        generarValor();
+        
         panelPrincipal=new  JPanel();
         GridLayout tablaPlantilla=new GridLayout(4,5);
         panelPrincipal.setLayout(tablaPlantilla);
@@ -99,18 +102,54 @@ public class VistaCalculadora extends JFrame
                     public void actionPerformed(ActionEvent ae) {
                         
                         JButton btn=(JButton)ae.getSource();
-                        if(btn.getText().equals("Reiniciar"))
+                        //v1=0;
+                        if(btn.getText().equals("C"))
                         {
-                            generarValor();
-                            //JOptionPane.showMessageDialog(panelPrincipal,"REINICIADO");
+                           JOptionPane.showMessageDialog(panelPrincipal,"REINICIADO");
                         }
-                        else if(btn.getText().equals(azar))
+                        else if(btn.getText().equals("=")&&op.equals("+"))
                         {
+                            for(int i=0; i<lista.size();i++)
+                            {
+                                for(int j=i+1;j<lista.size();i++)
+                                {
+                                    a=Integer.parseInt((String)lista.get(i));
+                                    b=Integer.parseInt((String)lista.get(j));
+                                    operacion=a+b;
+                                    //lista.add(operacion);
+                                    System.out.println("la suma es:"+operacion);
+                                    j++;
+                                }
+                                
+                            }
+                            
+                        }
+                        else if(btn.getText().equals("+"))
+                        {
+                            op=btn.getText();
+                            
                             //JOptionPane.showMessageDialog(panelPrincipal,"Has ganado !!:"+btn.getText());
+                        }
+                        else if(btn.getText().equals("-"))
+                        {
+                            op=btn.getText();
+                        }
+                        else if(btn.getText().equals("*"))
+                        {
+                            op=btn.getText();
+                        }
+                        else if(btn.getText().equals("/"))
+                        {
+                            op=btn.getText();
+                        }
+                        else if(btn.getText().equals("+"))
+                        {
+                            op=btn.getText();
                         }
                         else 
                         {
-                            //JOptionPane.showMessageDialog(panelPrincipal,"Estas Cerca:"+btn.getText());
+                            lista.add(btn.getText());
+                            System.out.println("arreglo"+lista);
                         }
                         
                     }
@@ -119,11 +158,6 @@ public class VistaCalculadora extends JFrame
             }
         }
         return panelPrincipal;
-    }
-    public void generarValor()
-    {
-        Random rnd=new Random();
-        azar=""+rnd.nextInt(10);
     }
     public void initComponentes()
     {
