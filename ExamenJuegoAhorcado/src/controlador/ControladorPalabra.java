@@ -83,15 +83,6 @@ public class ControladorPalabra
     }
      public boolean comparacion(String palabraOriginal,String palabraIngresada)
      {
-         for(int i=0; i<palabraOriginal.length();i++);
-         {
-            for(int j=0; j<palabraIngresada.length();j++)
-            {
-                String original=palabraOriginal.substring(0, 0);
-                String ingresa=palabraIngresada.substring(0, 0);
-            }
-
-         }
          if(palabraIngresada.equals(palabraOriginal))
          {
              System.out.println("repuesta correcta");
